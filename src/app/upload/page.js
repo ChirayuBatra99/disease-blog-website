@@ -189,7 +189,7 @@ export default function PublisherPage() {
               placeholder="Eg: Health Blog"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border-0"
+              className="w-full border-0 focus:outline-none focus:ring-0"
             />
           </fieldset>
 
@@ -197,9 +197,9 @@ export default function PublisherPage() {
             <legend className="px-2 text-gray-700">Author</legend>
             <input
               placeholder="Eg: xyz"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              className="w-full border-0 focus:outline-none focus:ring-0"
             />
           </fieldset>
         </div>
@@ -228,14 +228,14 @@ export default function PublisherPage() {
 
 
 
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-4 mb-4 ">
           <select
             value={blockType}
             onChange={(e) => setBlockType(e.target.value)}
-            className="border p-2 rounded "
+            className="border p-2 rounded"
           >
             {blockTypes.map((t) => (
-              <option key={t} value={t}>{t}</option>
+              <option key={t} value={t} className="min-w-3xl">{t}</option>
             ))}
           </select>
           <button
@@ -245,6 +245,7 @@ export default function PublisherPage() {
             ➕ Add Block
           </button>
         </div>
+        
 
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} className="bg-black-100 text-black-900">
           <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
@@ -260,11 +261,21 @@ export default function PublisherPage() {
           </SortableContext>
         </DndContext>
 
-        <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-4 p-6">
-          <h2 className="text-2xl font-bold mb-4">Add FAQs</h2>
+        <form onSubmit={handleSubmit} className="max-w-5xl space-y-4 p-6">
+          <div className="flex justify-between">
+    
+          <h2 className="text-2xl font-bold pt-3">Add FAQs</h2>
+          <button
+            type="button"
+            onClick={handleAddFaq}
+            className="bg-[#d26fab] text-white px-4 py-2 rounded hover:bg-[#cc559c]"
+          >
+            Add Another FAQ
+          </button>
+          </div>
 
           {faq.map((item, index) => (
-            <div key={index} className="space-y-2 border p-4 rounded-md bg-gray-50 min-w-xl">
+            <div key={index} className="space-y-2 border p-4 rounded-md bg-gray-50 min-w-2xl">
               <div className='flex flex-row'>
                 <input
                   type="text"
@@ -295,13 +306,7 @@ export default function PublisherPage() {
             </div>
           ))}
 
-          <button
-            type="button"
-            onClick={handleAddFaq}
-            className="bg-[#d26fab] text-white px-4 py-2 rounded hover:bg-[#cc559c]"
-          >
-            Add Another FAQ
-          </button>
+          
 
 
         </form>

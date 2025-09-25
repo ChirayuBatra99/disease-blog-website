@@ -38,7 +38,7 @@ function SortableItem({ id, block, updateBlock, removeBlock }) {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="border rounded p-4 bg-white shadow-sm my-2 w-full max-w-[500px]"
+      className="border rounded p-4 bg-white shadow-sm my-2 min-w-5xl"
     >
       <div className="flex justify-between mb-2 text-black w-[500px]">
         <strong>{block.type.toUpperCase()}</strong>
@@ -50,7 +50,7 @@ function SortableItem({ id, block, updateBlock, removeBlock }) {
         </button>
       </div>
       <textarea
-        className="w-full border p-2 rounded text-black"
+        className="w-full border p-2 rounded text-black min-w-5xl"
         rows={block.type === "paragraph" ? 4 : 2}
         value={block.content}
         onChange={(e) => updateBlock(id, e.target.value)}
@@ -194,9 +194,9 @@ export default function EditPage({ params }) {
 
     const payload = {
       title,
+      author,
       slug,
       tags,
-      author,
       cover_image_url: coverImage,
       published: true,
       content_blocks,
@@ -222,7 +222,7 @@ export default function EditPage({ params }) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-4 py-6">
       <h1 className="text-2xl font-bold mb-4">✏️ Edit Article</h1>
 
       <input
