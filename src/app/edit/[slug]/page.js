@@ -17,7 +17,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { nanoid } from "nanoid";
 
-const blockTypes = ["paragraph", "heading", "quote", "image", "list"];
+const blockTypes = ["paragraph", "heading", "subheading", "quote", "image", "list", "notecards", "resourcelinks", "summary"];
 
 function SortableItem({ id, block, updateBlock, removeBlock }) {
   const {
