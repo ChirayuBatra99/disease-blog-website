@@ -9,9 +9,9 @@ export default async function ArticlePage({ params }) {
   const article = await res.json();
 
   return (
-    <div className="max-w-3xl ml-[12%] p-6  flex-col text-left items-start">
-      <h1 className="text-4xl font-bold mb-2">{article.title}</h1>
-      <p className="text-sm text-gray-500 mb-6">By {article.author}</p>
+    <div className="max-w-3xl mx-[12%] p-6 flex-col items-start">
+      <h1 className="text-4xl font-bold mb-2 mt-10">{article.title}</h1>
+      <p className="text-sm text-gray-500 mb-6 font-sans">- By {article.author}</p>
       <ContentRenderer contentBlocks={article.content_blocks} />
       <FaqRenderer faq={article.faq} />
     </div>

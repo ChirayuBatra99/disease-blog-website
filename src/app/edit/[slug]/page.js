@@ -17,7 +17,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { nanoid } from "nanoid";
 
-const blockTypes = ["paragraph", "heading", "quote", "image", "list"];
+const blockTypes = ["paragraph", "heading", "subheading", "quote", "image", "list", "notecards", "resourcelinks", "summary"];
 
 function SortableItem({ id, block, updateBlock, removeBlock }) {
   const {
@@ -38,9 +38,9 @@ function SortableItem({ id, block, updateBlock, removeBlock }) {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="border rounded p-4 bg-white shadow-sm my-2"
+      className="border rounded p-4 bg-white shadow-sm my-2 min-w-5xl"
     >
-      <div className="flex justify-between mb-2 text-black">
+      <div className="flex justify-between mb-2 text-black w-[500px]">
         <strong>{block.type.toUpperCase()}</strong>
         <button
           className="text-red-500 text-sm"
@@ -50,7 +50,7 @@ function SortableItem({ id, block, updateBlock, removeBlock }) {
         </button>
       </div>
       <textarea
-        className="w-full border p-2 rounded text-black"
+        className="w-full border p-2 rounded text-black min-w-5xl"
         rows={block.type === "paragraph" ? 4 : 2}
         value={block.content}
         onChange={(e) => updateBlock(id, e.target.value)}
@@ -194,9 +194,9 @@ export default function EditPage({ params }) {
 
     const payload = {
       title,
+      author,
       slug,
       tags,
-      author,
       cover_image_url: coverImage,
       published: true,
       content_blocks,
@@ -222,14 +222,14 @@ export default function EditPage({ params }) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-4 py-6">
       <h1 className="text-2xl font-bold mb-4">✏️ Edit Article</h1>
 
       <input
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full border p-2 rounded mb-2"
+        className="w-full  p-2 rounded mb-2"
       />
       <input
         placeholder="Slug (url-path)"
@@ -264,21 +264,21 @@ export default function EditPage({ params }) {
         <select
           value={blockType}
           onChange={(e) => setBlockType(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded max-w-xl"
         >
           {blockTypes.map((t) => (
             <option key={t} value={t}>{t}</option>
           ))}
         </select>
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded "
           onClick={addBlock}
         >
           ➕ Add Block
         </button>
       </div>
 
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} className="bg-black-100 tetx-black-900">
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} className="bg-black-100 text-black-900">
         <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
           {blocks.map((block) => (
             <SortableItem

@@ -5,8 +5,9 @@ export default function FaqRenderer({ faq }) {
         <div>
             {faq.map((f, index) => {
                 return (
-                    <div key={index}>
-                        <span key={index}>Question: {f.question}</span>
+                    <div key={index} className="border border-gray-400 rounded-xl p-5">
+                        <span key={index} className='font-semibold'>Question: {f.question}</span>
+                        <div className="w-full h-[1px] bg-gray-300"></div>
                         <br/>
                         <span key={index}>Answer:{f.answer}</span>
                     </div>
