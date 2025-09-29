@@ -26,13 +26,14 @@ export default function ContentRenderer({ contentBlocks }) {
       case 'summary':
         return <SummaryBlock key={index} text={block.text} />;
       case 'notecards':
-        return block.notes && block.notes.length > 0 
+        return block.notes && block.notes.length > 0
           ? <NoteCardsBlock key={index} notes={block.notes} />
           : null;
       case 'resourcelinks':
-        return block.resources && block.resources.length > 0 
-          ? <ResourceLinksBlock key={index} resources={block.resources} />
-          : null; 
+        return block.text
+          ? <ResourceLinksBlock key={index} text={block.text} />
+          : null;
+
       default:
         return null;
     }

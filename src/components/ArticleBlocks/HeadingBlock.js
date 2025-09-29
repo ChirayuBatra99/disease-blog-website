@@ -4,7 +4,7 @@ export default function HeadingBlock({ level, text }) {
   return (
   <div>
     <Tag className="text-3xl font-[550] my-4">{text}</Tag>
-    <div className="w-full h-[1px] bg-gray-300 mb-6"></div>
+    <div className="w-full h-[1px] bg-[#d26fab] mb-6"></div>
   </div>
 )}
 

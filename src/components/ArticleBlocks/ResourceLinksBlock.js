@@ -1,20 +1,33 @@
-export default function ResourceLinksBlock({ resources }) {
+const ResourceLinksBlock = ({ text }) => {
+  // Split text by new lines
+  const lines = text.split("\n")
+
   return (
-    <div className="my-6">
-      <h2 className="text-2xl font-[550] mb-2">Resources</h2>
-      <div className="w-full h-[1px] bg-gray-300 mb-4"></div>
-      {resources && resources.length > 0 ? (
-        resources.map((res, i) => (
-          <p key={i}>
-            <strong>{res.name}</strong>:{" "}
-            <a href={res.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-              {res.link}
-            </a>
+    <div className="space-y-2">
+      {lines.map((line, idx) => {
+        // Simple check: is this line a link?
+        const isLink = line.startsWith("http")
+
+        return isLink ? (
+          <a
+            key={idx}
+            href={line}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-blue-500 underline hover:text-blue-700"
+          >
+            {line}
+          </a>
+        ) : (
+          <p key={idx} className="text-gray-800">
+            {line}
           </p>
-        ))
-      ) : (
-        <p className="text-gray-500">No resources added yet.</p>
-      )}
+        )
+      })}
     </div>
-  );
+  )
 }
+
+export default ResourceLinksBlock
+
+

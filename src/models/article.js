@@ -3,7 +3,7 @@ import mongoose, {Schema, model} from "mongoose";
 const ContentBlockSchema = new mongoose.Schema({
     type: {
         type: String,
-        enum: ['heading', 'paragraph', 'image', 'quote', 'list', 'subheading', 'notecards', 'resourelinks', 'summary'],
+        enum: ['heading', 'paragraph', 'image', 'quote', 'list', 'subheading', 'notecards', 'resourcelinks', 'summary'],
         required: true,
     },
     level: Number,
